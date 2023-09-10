@@ -1,0 +1,81 @@
+{
+  "LOCALES":		[ "ja", "ja-JP-mac" ],
+
+  "[":			[ "[", "“" ],
+  "]":			[ "]", "”" ],
+
+  "Default":		[ "既定", "デフォルト" ],
+  "Default-":		[ "既定の", "デフォルトの" ],
+  "DefaultBrowser":	[ "既定のブラウザー", "デフォルトウェブブラウザー" ],
+  "DefaultValue":	[ "既定値", "デフォルト" ],
+  "Application":	[ "プログラム", "アプリケーション" ],
+  "Program":		[ "プログラム", "アプリケーション" ],
+
+  "Color":		[ "色", "カラー" ],
+  "Colors":		[ "配色", "カラー" ],
+  "Window":		[ "ウィンドウ", "ウインドウ" ],
+  "Front":		[ "前面", "手前" ],
+  "Back":		[ "背面", "後ろ" ],
+  "Property":		[ "プロパティ", "情報" ],
+  "ViewProperty":	[ "プロパティを表示", "情報を見る" ],
+  "Print":		[ "印刷", "プリント" ],
+  "Top":		[ "最前面", "一番手前" ],
+  "TrashFolder":	[ "ごみ箱", "ゴミ箱" ],
+  "Wizard":		[ "ウィザード", "アシスタント" ],
+  "NextButton": 	[ "次へ", "続ける" ],
+  "Revert":		[ "入力の取り消し", "入力の取り消し" ],
+
+  "Browse":		[ "参照", "選択" ],
+  "CloseCMD":		[ "閉じる", "ウインドウを閉じる" ],
+  "Cut":		[ "切り取り", "カット" ],
+  "FullScreen":		[ "全画面表示", "フルスクリーン" ],
+  "Minimize":		[ "最小化", "しまう" ],
+  "Paste":		[ "貼り付け", "ペースト" ],
+  "Paste-si":		[ "貼り付け", "ペーストし" ],
+  "Paste-suru":		[ "貼り付ける", "ペーストする" ],
+  "PropertyCMD":	[ "プロパティ", "情報を見る" ],
+  "Redo":		[ "やり直し", "やり直す" ],
+  "SelectAll":		[ "すべて選択", "すべてを選択" ],
+  "Undo":		[ "元に戻す", "取り消す" ],
+  "Undo-sare":		[ "元に戻され", "取り消され" ],
+  "Undo-si":		[ "元に戻し", "取り消し" ],
+  "Zoom":		[ "拡大/縮小", "拡大／縮小" ],
+
+  "New-CMD":		[ "新しい", "新規" ],
+  "NewTab":		[ "新しいタブ", "新規タブ" ],
+  "NewWindow":		[ "新しいウィンドウ", "新規ウインドウ" ],
+  "Save-AsCMD":		[ "名前を付けて", "別名で" ],
+  "SaveAs":		[ "名前を付けて保存", "別名で保存" ],
+
+  "-ImportCMD":		[ "のインポート", "を読み込む" ],
+  "Import":		[ "インポート", "読み込む" ],
+  "ImportNoun":		[ "インポート", "読み込み" ],
+  "Import-sare":	[ "インポートされ", "読み込まれ" ],
+  "Import-si":		[ "インポートし", "読み込み" ],
+  "Import-sinai":	[ "インポートしない", "読み込まない" ],
+  "Import-sita":	[ "インポートした", "読み込んだ" ],
+  "Import-site":	[ "インポートして", "読み込んで" ],
+  "Import-suru":	[ "インポートする", "読み込む" ],
+  "Import-deki":	[ "インポートでき", "読み込め" ],
+
+  "-ExportCMD":		[ "のエクスポート", "を書き出す" ],
+  "Export":		[ "エクスポート", "書き出す" ],
+  "ExportNoun":		[ "エクスポート", "書き出し" ],
+  "Export-sare":	[ "エクスポートされ", "書き出され" ],
+  "Export-si":		[ "エクスポートし", "書き出し" ],
+  "Export-suru":	[ "エクスポートする", "書き出す" ],
+
+  "NewCalendarDefault":	[ "新しいカレンダー", "新しいフォルダー" ],
+  "NewFolderDefault":	[ "名称未設定", "名称未設定フォルダー" ],
+
+  "AccountManager.accountManager.size":	[ "width: 70em; height: 46.6em;", "width: 65em; height: 50em;" ],
+  "AccountManager.accountTree.width":	[ "width: 17em;", "width: 19em;" ],
+
+  "alwaysappendaccesskeys": [ "true", "" ],
+  "intl.css.locale": [ "", "" ],
+
+  "COMMON": {
+    "intl.css.common": "/* see bug-jp 4303 */\n#autoSelectLastProfile {\n  white-space: nowrap;\n}",
+    "foxkeh": "フォクすけ"
+  }
+}
