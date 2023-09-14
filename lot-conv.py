@@ -127,6 +127,9 @@ def main(args_locale:'locale_str'):
   FILTERS = load_filters_json()
   if FILTERS == None:
     return
+  elif not 'LOCALES' in FILTERS or not 'COMMON' in FILTERS:
+    print('No LOCALES nor COMMON values in', FILTER_JSON_FILE)
+    return
   #shutil.rmtree(pathlib.Path(L10N_DIR).joinpath(args_locale))
   if args_locale != None:
     # FILTERS error check.
@@ -137,6 +140,7 @@ def main(args_locale:'locale_str'):
     else:
       l10n_proc(args_locale)
   else:
+    # Convert all locale.
     for loc in FILTERS['LOCALES']:
       l10n_proc(loc)
 
@@ -145,9 +149,11 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument('-s', '--src_dir', type=pathlib.Path, default=SRC_DIR, help='Set source directory of resources.')
   parser.add_argument('-t', '--l10n_dir', type=pathlib.Path, default=L10N_DIR, help='Set target directory to output. It will be followed by locale code sub-directory')
+  parser.add_argument('-f', '--filter', type=pathlib.Path, default=FILTER_JSON_FILE, help='Load filters.json file. It must have LOCALES and COMMON values are defined.')
   parser.add_argument('-l', '--locale', type=str, choices=['ja', 'ja-JP-mac'], help='Set specific locale code to convert.')
   args = parser.parse_args()
   SRC_DIR = args.src_dir
   L10N_DIR = args.l10n_dir
+  FILTER_JSON_FILE = args.filter
   
   main(args.locale)
