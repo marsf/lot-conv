@@ -65,8 +65,8 @@
   "Export-si":		[ "エクスポートし", "書き出し" ],
   "Export-suru":	[ "エクスポートする", "書き出す" ],
 
-  "NewCalendarDefault":	[ "新しいカレンダー", "新しいフォルダー" ],
-  "NewFolderDefault":	[ "名称未設定", "名称未設定フォルダー" ],
+  "NewCalendarDefault":	[ "新しいカレンダー", "名称未設定" ],
+  "NewFolderDefault":	[ "新しいフォルダー", "名称未設定フォルダー" ],
 
   "AccountManager.accountManager.size":	[ "width: 70em; height: 46.6em;", "width: 65em; height: 50em;" ],
   "AccountManager.accountTree.width":	[ "width: 17em;", "width: 19em;" ],
