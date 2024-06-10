@@ -15,7 +15,7 @@ To show command options:
 
 # lot-proof.py
 
-Rewrite the convert part of error checks of Lot.
+Rewrite the error check part of Lot.
 Check data of word errors and character errors are defined in errorcheck.json.
 
 ```> python lot-proof.py [-t L10n_DIR] [-l locale] [-f file_to_proofreadings]```
