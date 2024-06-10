@@ -12,3 +12,12 @@ Then, resources are converted to ./l10n/ja and ./l10n/ja-JP-mac directory.
 To show command options:
 
 ```> python lot-conv.py -h```
+
+# lot-proof.py
+
+Rewrite the convert part of error checks of Lot.
+Check data of word errors and character errors are defined in errorcheck.json.
+
+```> python lot-proof.py [-t L10n_DIR] [-l locale] [-f file_to_proofreadings]```
+
+TBD
