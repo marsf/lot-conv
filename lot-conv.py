@@ -84,7 +84,7 @@ def l10n_proc(target_locale:'locale_str'):
   for fp in get_filelist(SRC_DIR):
     # Exclude directories.
     if re.search(r'(\/.DS_Store|\/.hg|\/.git)', str(fp.as_posix())):
-      print('Directory skipped:', fp.parent)
+      print(' Directory skipped:', fp.parent)
       continue
 
     # Set target l10n dir, and mkdir().
@@ -118,7 +118,7 @@ def l10n_proc(target_locale:'locale_str'):
       shutil.copystat(fp, target_fp)
       #print('Converted:', target_fp)
     else:
-      print('%s copied:' % fp.suffix, shutil.copy2(fp, l10n_dir))
+      print(' %s copied:' % fp.suffix, shutil.copy2(fp, l10n_dir))
     count += 1
   print('Converted: %d files to %s/%s' % (count, L10N_DIR, target_locale))
 
@@ -130,7 +130,6 @@ def main(args_filter:'file_path', args_locale:'locale_str'):
   elif not 'LOCALES' in filters:
     print('No LOCALES values in', args_filter)
     return
-  #shutil.rmtree(pathlib.Path(L10N_DIR).joinpath(args_locale))
   if args_locale != None:
     # FILTERS error check.
     try:
@@ -143,6 +142,9 @@ def main(args_filter:'file_path', args_locale:'locale_str'):
     # Convert all locale.
     for loc in filters['LOCALES']:
       print('\nConvert to %s locale:' % loc)
+      path = pathlib.Path(L10N_DIR).joinpath(loc)
+      print('\nRemove existing directory:', path)
+      shutil.rmtree(path)
       l10n_proc(loc)
 
 
