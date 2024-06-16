@@ -80,7 +80,9 @@ def convert_file(fn:'file_path', ext:'file_ext_str', target_locale:'locale_str')
 
 
 def l10n_proc(target_locale:'locale_str'):
-  count = 0
+  count_converted = 0
+  count_copied = 0
+  count_skipped = 0
   for fp in get_filelist(SRC_DIR):
     # Exclude directories.
     if re.search(r'(\/.DS_Store|\/.hg|\/.git)', str(fp.as_posix())):
@@ -105,6 +107,7 @@ def l10n_proc(target_locale:'locale_str'):
       res = convert_file(fp, fp.suffix, target_locale)
       if len(res) < 1:
         print('Convert skipped by error:', fp)
+        count_skipped += 1
         continue
       # Write converted file to l10n_dir.
       target_fp = l10n_dir.as_posix()+'/'+fp.name
@@ -118,9 +121,11 @@ def l10n_proc(target_locale:'locale_str'):
       shutil.copystat(fp, target_fp)
       #print('Converted:', target_fp)
     else:
-      print(' %s copied:' % fp.suffix, shutil.copy2(fp, l10n_dir))
-    count += 1
-  print('Converted: %d files to %s/%s' % (count, L10N_DIR, target_locale))
+      count_copied += 1
+      #print(' %s copied:' % fp.suffix, shutil.copy2(fp, l10n_dir))
+    count_converted += 1
+  total_count = count_converted + count_copied + count_skipped
+  print('\nResult for %s locale:\n Converted: %d\n Copied: %d\n Skipped: %d\n Total: %d files' % (target_locale, count_converted, count_copied, count_skipped, total_count))
 
 
 def main(args_filter:'file_path', args_locale:'locale_str'):
