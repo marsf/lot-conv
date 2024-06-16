@@ -130,6 +130,7 @@ def l10n_proc(target_locale:'locale_str'):
 
 def main(args_filter:'file_path', args_locale:'locale_str'):
   filters = load_filters_json(args_filter)
+  locales = filters['LOCALES']
   if filters == None:
     return
   elif not 'LOCALES' in filters:
@@ -141,16 +142,16 @@ def main(args_filter:'file_path', args_locale:'locale_str'):
       filters['LOCALES'].index(args_locale)
     except ValueError as e:
       print('No locale items:', e)
+      return
     else:
-      l10n_proc(args_locale)
-  else:
-    # Convert all locale.
-    for loc in filters['LOCALES']:
-      print('\nConvert to %s locale:' % loc)
-      path = pathlib.Path(L10N_DIR).joinpath(loc)
-      print('\nRemove existing directory:', path)
-      shutil.rmtree(path)
-      l10n_proc(loc)
+      locales = [args_locale]
+  # Convert.
+  for loc in locales:
+    print('\nConvert to %s locale:' % loc)
+    path = pathlib.Path(L10N_DIR).joinpath(loc)
+    print('\nRemove existing directory:', path)
+    shutil.rmtree(path)
+    l10n_proc(loc)
 
 
 if __name__ == '__main__':
