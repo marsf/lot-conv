@@ -157,8 +157,8 @@ def main(args_file:'file_path', args_locale:'locale_str'):
   global WORDCHECK, CHARCHECK, CHAR_BASE, EX_PATHS
   WORDCHECK = errorchecks['WORDCHECK']
   CHARCHECK = errorchecks['CHARCHECK']
-  # "(?![ ... ])" Excludes 'basechars', 'kanji_jyouyou_news' and 'kanji_supplement'.
-  CHAR_BASE = '(?![' + CHARCHECK['basechars'] + CHARCHECK['kanji_jyouyou_news'] + CHARCHECK['kanji_supplement'] + ']).'
+  # "(?![ ... ])" Excludes 'basechars' and 'kanji_*'.
+  CHAR_BASE = '(?![' + CHARCHECK['basechars'] + CHARCHECK['kanji_jyouyou_news'] + CHARCHECK['kanji_jinmeiyou'] + CHARCHECK['kanji_supplement'] + ']).'
   EX_PATHS = errorchecks['PATH']
 
   if (args_file):
