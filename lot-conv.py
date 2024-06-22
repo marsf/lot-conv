@@ -147,11 +147,16 @@ def main(args_filter:'file_path', args_locale:'locale_str'):
       locales = [args_locale]
   # Convert.
   for loc in locales:
-    print('\nConvert to %s locale:' % loc)
-    path = pathlib.Path(L10N_DIR).joinpath(loc)
-    print('\nRemove existing directory:', path)
-    shutil.rmtree(path)
-    l10n_proc(loc)
+    try:
+      path = pathlib.Path(L10N_DIR).joinpath(loc)
+      print('\nRemove existing directory:', path)
+      shutil.rmtree(path)
+    except OSError as e:
+      print(e)
+      return
+    else:
+      print('\nConvert to %s locale:' % loc)
+      l10n_proc(loc)
 
 
 if __name__ == '__main__':
