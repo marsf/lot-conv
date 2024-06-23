@@ -175,7 +175,7 @@ def main(args_file:'file_path', args_locale:'locale_str'):
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
-  parser.add_argument('-t', '--l10n_dir', type=pathlib.Path, default=L10N_DIR, help='Set target directory of proofreedings. It should be followed by locale code sub-directory')
+  parser.add_argument('-t', '--l10n_dir', type=pathlib.Path, default=L10N_DIR, help='Set target root directory of proofreedings. It must contain locale code sub-directory.')
   parser.add_argument('-l', '--locale', type=str, choices=['ja', 'ja-JP-mac'], default='ja', help='Set specific locale code of proofreedings.')
   parser.add_argument('-f', '--file', type=pathlib.Path, help='Set a file to proofreadings.')
   

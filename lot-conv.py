@@ -162,7 +162,7 @@ def main(args_filter:'file_path', args_locale:'locale_str'):
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument('-s', '--src_dir', type=pathlib.Path, default=SRC_DIR, help='Set source directory of resources.')
-  parser.add_argument('-t', '--l10n_dir', type=pathlib.Path, default=L10N_DIR, help='Set target directory to output. It will be followed by locale code sub-directory')
+  parser.add_argument('-t', '--l10n_dir', type=pathlib.Path, default=L10N_DIR, help='Set target directory to output. It will be followed by locale code sub-directory.')
   parser.add_argument('-f', '--filter', type=pathlib.Path, default=FILTER_JSON_FILE, help='Load filters.json file. It must have LOCALES values are defined.')
   parser.add_argument('-l', '--locale', type=str, choices=['ja', 'ja-JP-mac'], help='Set specific locale code to convert which is defined in filters.json file.')
   args = parser.parse_args()
