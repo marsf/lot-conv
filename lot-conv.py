@@ -122,7 +122,8 @@ def l10n_proc(target_locale:'locale_str'):
       #print('Converted:', target_fp)
     else:
       count_copied += 1
-      #print(' %s copied:' % fp.suffix, shutil.copy2(fp, l10n_dir))
+      copied_file = shutil.copy2(fp, l10n_dir)
+      #print(' %s copied:' % fp.suffix, copied_file)
     count_converted += 1
   total_count = count_converted + count_copied + count_skipped
   print('\nResult for %s locale:\n Converted: %d\n Copied: %d\n Skipped: %d\n Total: %d files' % (target_locale, count_converted, count_copied, count_skipped, total_count))
