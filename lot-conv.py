@@ -112,7 +112,7 @@ def l10n_proc(target_locale:'locale_str'):
         continue
       # Write converted file to l10n_dir.
       target_fp = l10n_dir.as_posix()+'/'+fp.name
-      with open(target_fp, mode='w', encoding='UTF-8') as f:
+      with open(target_fp, mode='w', encoding='UTF-8', newline='\n') as f:
         try:
           f.writelines(res)
         except OSError as e:
