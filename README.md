@@ -20,7 +20,7 @@ To show command options:
 ```> python lot-conv.py -h```
 
 - -s, --src_dir [SRC_DIR] : Set source directory of resources. (Default = ./src)
-- -t, --l10n_dir [L10N_DIR] : Set target directory to output. It will be followed by locale code sub-directory. (Default = ./l10n)
+- -d, --l10n_dir [L10N_DIR] : Set destination directory to output. It will be followed by locale code sub-directory. (Default = ./l10n)
 - -f, --filter [FILTER_JSON_FILE] : Set custom filters.json file. It must have LOCALES values are defined. (Default = ja.filters.json)
 - -l, --locale [LOCALE] : Set specific locale code to convert which is defined in filters.json file. ('ja' or 'ja-JP-mac' only)
 

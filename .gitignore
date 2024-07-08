@@ -1,3 +1,10 @@
+# L10n related paths
+src/
+l10n/
+gecko-l10n/
+firefox-l10n/
+thunderbird-l10n/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
