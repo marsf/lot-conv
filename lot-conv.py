@@ -7,6 +7,7 @@ import json
 import re
 import pathlib
 import shutil
+import os
 
 SRC_DIR = 'src'
 L10N_DIR = 'l10n'
@@ -150,8 +151,12 @@ def main(args_filter:'file_path', args_locale:'locale_str'):
   for loc in locales:
     try:
       path = pathlib.Path(L10N_DIR).joinpath(loc)
-      print('\nRemove existing directory:', path)
-      shutil.rmtree(path)
+      if os.path.isdir(path):
+        print('\nRemove existing directory:', path)
+        shutil.rmtree(path)
+      else:
+        print('\nCreate destination directory:', path)
+        os.makedirs(path)
     except OSError as e:
       print(e)
       return
