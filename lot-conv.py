@@ -2,7 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import argparse
+from argparse import ArgumentParser
+from sys import exit
 import json
 import re
 import pathlib
@@ -80,14 +81,14 @@ def convert_file(fn:'file_path', ext:'file_ext_str', target_locale:'locale_str')
   return results
 
 
-def l10n_proc(target_locale:'locale_str'):
+def l10n_proc(target_locale:'locale_str') -> int:
   count_converted = 0
   count_copied = 0
   count_skipped = 0
   for fp in get_filelist(SRC_DIR):
     # Exclude directories.
     if re.search(r'(\/.DS_Store|\/.hg|\/.git)', str(fp.as_posix())):
-      print(' Directory skipped:', fp.parent)
+      #print(' Directory skipped:', fp.parent)
       continue
 
     # Set target l10n dir, and mkdir().
@@ -128,7 +129,7 @@ def l10n_proc(target_locale:'locale_str'):
     count_converted += 1
   total_count = count_converted + count_copied + count_skipped
   print('\nResult for %s locale:\n Converted: %d\n Copied: %d\n Skipped: %d\n Total: %d files' % (target_locale, count_converted, count_copied, count_skipped, total_count))
-
+  return count_skipped
 
 def main(args_filter:'file_path', args_locale:'locale_str'):
   filters = load_filters_json(args_filter)
@@ -162,11 +163,12 @@ def main(args_filter:'file_path', args_locale:'locale_str'):
       return
     else:
       print('\nConvert to %s locale:' % loc)
-      l10n_proc(loc)
+      if (l10n_proc(loc)):
+        exit(1)
 
 
 if __name__ == '__main__':
-  parser = argparse.ArgumentParser()
+  parser = ArgumentParser()
   parser.add_argument('-s', '--src_dir', type=pathlib.Path, default=SRC_DIR, help='Set source directory of resources.')
   parser.add_argument('-d', '--l10n_dir', type=pathlib.Path, default=L10N_DIR, help='Set destination directory to output. It will be followed by locale code sub-directory.')
   parser.add_argument('-f', '--filter', type=pathlib.Path, default=FILTER_JSON_FILE, help='Load filters.json file. It must have LOCALES values are defined.')
