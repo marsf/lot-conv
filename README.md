@@ -10,7 +10,8 @@ Put [gecko-l10n](https://github.com/mozilla-japan/gecko-l10n/tree/master/ja) res
 
 Then, resources are converted to ./l10n/ja and ./l10n/ja-JP-mac directory.
 
-Convert target of file types: .ftl, .properties, .ini, .dtd, .css, .inc
+Convert target of file types: `.ftl`, `.properties`, `.ini`, `.dtd`, `.css`, `.inc`
+
 Other than these types will be just copied.
 
 ## Options
@@ -23,6 +24,7 @@ To show command options:
 - -d, --l10n_dir [L10N_DIR] : Set destination directory to output. It will be followed by locale code sub-directory. (Default = ./l10n)
 - -f, --filter [FILTER_JSON_FILE] : Set custom filters.json file. It must have LOCALES values are defined. (Default = ja.filters.json)
 - -l, --locale [LOCALE] : Set specific locale code to convert which is defined in filters.json file. ('ja' or 'ja-JP-mac' only)
+- -p, --product [onlyfx | onlytb | onlysm] : Specify target product to convert for its directories.
 
 
 # lot-proof.py
@@ -32,7 +34,7 @@ Check data for word errors and character errors are defined in errorcheck.json.
 
 ```> python lot-proof.py -l ja```
 
-Supported file types: .ftl, .properties, .ini, .dtd
+Supported file types: `.ftl`, `.properties`, `.ini`, `.dtd`
 
 ## Options
 

@@ -14,6 +14,12 @@ SRC_DIR = 'src'
 L10N_DIR = 'l10n'
 FILTER_JSON_FILE = 'ja.filters.json'
 FILTERS = {}
+TARGET_DIR = []
+PRODUCT = {
+  'onlyfx': ['browser', 'devtools', 'dom', 'extensions', 'mobile', 'netwerk', 'security', 'toolkit'],
+  'onlytb': ['calendar', 'chat', 'mail'],
+  'onlysm': ['suite']
+}
 
 # Regexp to get filter item, entity id, strings of the line.
 RE_filter_item = r'@@([\w\-\.]+|\u005b?|\u005d?)@@'
@@ -22,7 +28,6 @@ RE_attr = r'[\s\t]*(\.[\w\.\-]+)[\s\t]*=[\s\t]*(.*)'
 RE_str_series = r'([\s\t]*)(.*)'
 RE_ftl_selector = r'[\s\t]*{[\s\t]*\$[a-zA-Z]+\s\->|[\s\t]*}$'
 RE_comments = r'^#+\s|^<!\-\-|\-\->$|^;'
-
 
 def load_filters_json(file:'file_path') -> json:
   # Load ja.filters.json file.
@@ -90,7 +95,10 @@ def l10n_proc(target_locale:'locale_str') -> int:
     if re.search(r'(\/.DS_Store|\/.hg|\/.git)', str(fp.as_posix())):
       #print(' Directory skipped:', fp.parent)
       continue
-
+    # Filter specified PRODUCT directories. (onlyfx | onlytb | onlysm)
+    fp_path = str(fp.as_posix()).removeprefix(str(SRC_DIR.as_posix()))
+    if (TARGET_DIR != []) and not ((fp_path.split('/'))[1] in TARGET_DIR):
+      continue
     # Set target l10n dir, and mkdir().
     try:
       l10n_dir = pathlib.Path(L10N_DIR).joinpath(target_locale).joinpath(fp.parent.relative_to(SRC_DIR))
@@ -103,7 +111,6 @@ def l10n_proc(target_locale:'locale_str') -> int:
         #print('mkdir():', l10n_dir)
       except OSError as e:
         print(e)
-
     if re.search('\.(ftl|properties|ini|dtd|css|inc)', str(fp.suffix)):
       # Convert.
       res = convert_file(fp, fp.suffix, target_locale)
@@ -148,8 +155,8 @@ def main(args_filter:'file_path', args_locale:'locale_str'):
       return
     else:
       locales = [args_locale]
-  # Convert.
   for loc in locales:
+    # Clear l10n directory.
     try:
       path = pathlib.Path(L10N_DIR).joinpath(loc)
       if os.path.isdir(path):
@@ -173,9 +180,11 @@ if __name__ == '__main__':
   parser.add_argument('-d', '--l10n_dir', type=pathlib.Path, default=L10N_DIR, help='Set destination directory to output. It will be followed by locale code sub-directory.')
   parser.add_argument('-f', '--filter', type=pathlib.Path, default=FILTER_JSON_FILE, help='Load filters.json file. It must have LOCALES values are defined.')
   parser.add_argument('-l', '--locale', type=str, choices=['ja', 'ja-JP-mac'], help='Set specific locale code to convert which is defined in filters.json file.')
+  parser.add_argument('-p', '--product', type=str, choices=['onlyfx', 'onlytb', 'onlysm'], help='Specify target product to convert for its directories.')
   args = parser.parse_args()
   SRC_DIR = args.src_dir
   L10N_DIR = args.l10n_dir
   FILTER_JSON_FILE = args.filter
+  TARGET_DIR = PRODUCT[args.product] if (args.product != None) else []
   
   main(args.filter, args.locale)
